@@ -12,6 +12,12 @@ import userRoutes from './routes/userRoutes.js'
 import { clerkMiddleware } from '@clerk/express'
 
 
+const allowedOrigins = [
+  'https://job-portal-6exd.vercel.app', // your frontend domain
+  'http://localhost:3000'               // for local Next.js dev
+]
+
+
 // Initialize Express
 const app = express()
 
@@ -20,7 +26,7 @@ connectDB()
 await connectCloudinary()
 
 // Middlewares
-app.use(cors())
+app.use(cors(allowedOrigins))
 app.use(express.json())
 app.use(clerkMiddleware())
 
