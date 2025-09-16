@@ -18,6 +18,7 @@ const allowedOrigins = [
 ]
 
 
+
 // Initialize Express
 const app = express()
 
