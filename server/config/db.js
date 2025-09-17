@@ -1,18 +1,12 @@
 import mongoose from "mongoose";
-import dotenv from "dotenv";
 
-dotenv.config();
-
+// Function to connect to the MongoDB database
 const connectDB = async () => {
-  try {
-    await mongoose.connect(process.env.MONGODB_URI, {
-      serverSelectionTimeoutMS: 10000,
-    });
-    console.log("✅ MongoDB Connected");
-  } catch (err) {
-    console.error("❌ MongoDB connection error:", err);
-    process.exit(1);
-  }
-};
 
-export default connectDB;
+    mongoose.connection.on('connected', () => console.log('Database Connected'))
+
+    await mongoose.connect(`${process.env.MONGODB_URI}/job-portal`)
+
+}
+
+export default connectDB
