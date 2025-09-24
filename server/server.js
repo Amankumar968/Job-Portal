@@ -22,7 +22,7 @@ app.use(cors({
   origin: '*',   // <-- open for all
   credentials: true,
 }));
-app.post('/webhooks', express.raw({ type: 'application/json' }))
+app.post('/webhooks', express.raw({ type: 'application/json' }),clerkWebhooks)
 
 // ✅ Middlewares
 app.use(express.json());
