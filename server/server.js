@@ -22,6 +22,7 @@ app.use(cors({
   origin: '*',   // <-- open for all
   credentials: true,
 }));
+app.post('/webhooks', express.raw({ type: 'application/json' }))
 
 // ✅ Middlewares
 app.use(express.json());
@@ -34,7 +35,7 @@ app.get("/debug-sentry", function mainHandler(req, res) {
   throw new Error("My first Sentry error!");
 });
 
-app.post('/webhooks', clerkWebhooks);
+//app.post('/webhooks', clerkWebhooks);
 app.use('/api/company', companyRoutes);
 app.use('/api/jobs', jobRoutes);
 app.use('/api/users', userRoutes);
