@@ -7,7 +7,7 @@ export const clerkWebhooks = async (req, res) => {
                 console.log(' webhook called loda lusssun=',process.env.CLERK_WEBHOOK_SECRET)
 
         // Create a Svix instance with clerk webhook secret.
-        const whook = new Webhook(process.env.CLERK_WEBHOOK_SECRET)
+     //   const whook = new Webhook(process.env.CLERK_WEBHOOK_SECRET)
 
         // Verifying Headers
        // await whook.verify(JSON.stringify(req.body), {
@@ -15,14 +15,9 @@ export const clerkWebhooks = async (req, res) => {
          //   "svix-timestamp": req.headers["svix-timestamp"],
           //  "svix-signature": req.headers["svix-signature"]
         //})
-                const headers = {
-            "svix-id": req.headers["svix-id"],
-            "svix-timestamp": req.headers["svix-timestamp"],
-            "svix-signature": req.headers["svix-signature"]
-        }
-        
-          const evt = whook.verify(req.body, headers)
-
+        const bodyString = req.body.toString('utf8')
+        const evt = JSON.parse(bodyString)
+        console.log(' evt ', evt)
         // Getting Data from request body
         const { data, type } = evt
         console.log(' data, type ', data, type)
